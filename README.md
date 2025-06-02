@@ -74,3 +74,39 @@ Inconvénients :
 Nécessite un docker build à chaque changement de fichier.
 
 Moins pratique pour les ajustements rapides.
+
+Partie 5 
+
+a) Récuperation des images depuis Docker Hub
+
+docker pull mysql
+docker pull phpmyadmin/phpmyadmin
+
+b) Création des 2 containers 
+
+1) Container SQL 
+
+docker run -d --name my-mysql \
+  --network my-network \
+  -e MYSQL_ROOT_PASSWORD=rootpass \
+  -e MYSQL_DATABASE=mydb \
+  mysql
+
+2) lié le container a phpmyAdmin : 
+
+docker run -d --name my-phpmyadmin \
+  --network my-network \
+  -e PMA_HOST=my-mysql \
+  -p 8081:80 \
+  phpmyadmin/phpmyadmin
+
+
+
+
+
+
+
+
+
+
+
